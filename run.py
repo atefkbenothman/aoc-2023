@@ -49,6 +49,10 @@ if __name__ == "__main__":
   if example:
     input_file = f"{day_dir}/example_{part}.txt"
 
+  if not os.path.exists(input_file):
+    print(f"{input_file} does not exist!")
+    exit(0)
+
   data = read_input(input_file)
 
   # import main module dynamically
