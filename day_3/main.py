@@ -60,20 +60,21 @@ def part_2(data: list) -> int:
             (
               new_row in range(rows) and
               start in range(cols) and
-              end in range(cols)
-            ) and
+              data[new_row][start].isnumeric()
+            ) or 
             (
-              data[new_row][start].isnumeric() or
+              new_row in range(rows) and
+              end in range(cols) and
               data[new_row][end].isnumeric()
             )
           ):
-            visited.add((new_row, start))
-            visited.add((new_row, end))
-            if data[new_row][start].isnumeric():
+            if start in range(cols) and data[new_row][start].isnumeric():
               num = data[new_row][start] + num
+              visited.add((new_row, start))
               start -= 1
-            if data[new_row][end].isnumeric():
+            if end in range(cols) and data[new_row][end].isnumeric():
               num = num + data[new_row][end]
+              visited.add((new_row, end))
               end += 1
           nums.append(num)
       if len(nums) == 2:
