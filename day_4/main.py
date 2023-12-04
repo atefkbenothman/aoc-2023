@@ -65,17 +65,15 @@ def part_2(data: list) -> int:
     card_count_mapping[card["id"]] = card_match_count
 
   # initialize a list to store the count of each card.
-  # we have 1 count of each card to start.
+  # initiallly, we have 1 count of each card.
   card_counts = [1] * len(data)
 
   # for each card
   for card_i in range(len(card_counts)):
     # get the number of copies to add to subsequent cards
-    card_copies_to_add = card_count_mapping[str(card_i+1)]
-    # loop thru each copy and update the card count
-    for _ in range(card_counts[card_i]):
-      for j in range(card_copies_to_add):
-        card_index_to_add_to = card_i + j + 1
-        # add card count
-        card_counts[card_index_to_add_to] += 1
+    num_copies_to_add = card_count_mapping[str(card_i+1)]
+    # for each card copy, add the count of the original card to the target card's count
+    for j in range(num_copies_to_add):
+      card_index_to_add_to = card_i + 1 + j
+      card_counts[card_index_to_add_to] += card_counts[card_i]
   return sum(card_counts)
