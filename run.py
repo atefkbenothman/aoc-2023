@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 sys.dont_write_bytecode = True
 
@@ -13,13 +15,13 @@ if __name__ == "__main__":
     "--day",
     type=int,
     help="choose a day",
-    required=True
+    required=False
   )
   parser.add_argument(
     "--part",
     type=int,
     help="choose which part to run",
-    required=True
+    required=False
   )
   parser.add_argument(
     "--example",
@@ -27,7 +29,32 @@ if __name__ == "__main__":
     default=False,
     help="run the example"
   )
+  parser.add_argument(
+    "--new",
+    type=int,
+    help="create a new directory for the day",
+    required = False
+  )
   args = parser.parse_args()
+
+  # new
+  if args.new:
+    day_dir_name = f"day_{args.new}"
+
+    if not os.path.exists(day_dir_name):
+      os.makedirs(day_dir_name)
+
+      files = [
+        "inputs.txt",
+        "example_1.txt",
+        "example_2.txt",
+        "main.py"
+      ]
+
+      for file in files:
+        open(f"{day_dir_name}/{file}", "w")
+
+    exit(0)
 
   # day
   day = args.day
