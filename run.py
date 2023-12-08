@@ -45,7 +45,7 @@ if __name__ == "__main__":
       os.makedirs(day_dir_name)
 
       files = [
-        "inputs.txt",
+        "input.txt",
         "example_1.txt",
         "example_2.txt",
         "main.py"
