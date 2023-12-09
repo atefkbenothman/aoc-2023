@@ -8,3 +8,6 @@ to run the actual input:
 
 to run an example input:
 `python3 run.py --day <num> --part <num> --example`
+
+to show the debug output:
+`python3 run.py --day <num> --part <num> --debug`
