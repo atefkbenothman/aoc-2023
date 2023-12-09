@@ -1,3 +1,7 @@
+import logging
+logger = logging.getLogger()
+
+
 DIGITS = {
   "1": 1,
   "2": 2,

@@ -1,3 +1,7 @@
+import logging
+logger = logging.getLogger()
+
+
 def part_1(data: list) -> int:
   """
   part 1
@@ -77,6 +81,6 @@ def part_2(data: list) -> int:
 
   finish = time.perf_counter()
 
-  print(f"finished in {round(finish - start, 2)} seconds")
+  logging.debug(f"finished in {round(finish - start, 2)} seconds")
 
   return ways_to_win

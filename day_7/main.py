@@ -1,3 +1,7 @@
+import logging
+logger = logging.getLogger()
+
+
 CARDS = ["J", "2", "3", "4", "5", "6", "7", "8", "9", "T", "Q", "K", "A"]
 
 def get_hand_type(hand: str) -> int:
@@ -34,41 +38,41 @@ def get_hand_type(hand: str) -> int:
 
   # five of a kind
   if len(card_counts) == 1 and card_counts_vals[0] == 5:
-    # print("five of a kind", hand)
+    logging.debug(f"five of a kind: {hand}")
     hand_point = 7
 
   # four of a kind
   elif len(card_counts) == 2 and len(card_counts_vals) == 2 and 4 in card_counts_vals and 1 in card_counts_vals:
-    # print("four of a kind", hand)
+    logging.debug(f"four of a kind: {hand}")
     hand_point = 6
 
   # full house
   elif len(card_counts) == 2 and len(card_counts_vals) == 2 and 3 in card_counts_vals and 2 in card_counts_vals:
-    # print("full house", hand)
+    logging.debug(f"full house: {hand}")
     hand_point = 5
 
   # three of a kind
   elif len(card_counts) == 3 and len(card_counts_vals) == 2 and 3 in card_counts_vals and 1 in card_counts_vals:
-    # print("three of a kind", hand)
+    logging.debug(f"three of a kind: {hand}")
     hand_point = 4
 
   # two pair
   elif len(card_counts) == 3 and len(card_counts_vals) == 2 and 2 in card_counts_vals and 1 in card_counts_vals:
-    # print("two pair", hand)
+    logging.debug(f"two of a pair: {hand}")
     hand_point = 3
 
   # one pair
   elif len(card_counts) == 4 and len(card_counts_vals) == 2 and 2 in card_counts_vals and 1 in card_counts_vals:
-    # print("one pair", hand)
+    logging.debug(f"one pair: {hand}")
     hand_point = 2
 
   # high card
   elif len(card_counts) == 5 and len(card_counts_vals) == 1 and 1 in card_counts_vals:
-    # print("high card", hand)
+    logging.debug(f"high card: {hand}")
     hand_point = 1
 
   else:
-    print("found no type:", card_counts, card_counts_vals)
+    logging.debug("found no type: {card_counts}, {card_counts_vals}")
   
   return hand_point
 

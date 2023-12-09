@@ -1,3 +1,7 @@
+import logging
+logger = logging.getLogger()
+
+
 def extract_game_info(info: str) -> dict:
   """
   extract the game information into a dict.

@@ -1,3 +1,7 @@
+import logging
+logger = logging.getLogger()
+
+
 def get_next_node(key: str, step_i: str, steps: list, nodes: dict) -> (str, int):
   """
   given a node key and step (L or R), get the next node's key

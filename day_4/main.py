@@ -1,3 +1,7 @@
+import logging
+logger = logging.getLogger()
+
+
 def extract_card_info(info: str) -> dict:
   """
   extract contents of card info to a dict.

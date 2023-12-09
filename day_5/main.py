@@ -1,3 +1,7 @@
+import logging
+logger = logging.getLogger()
+
+
 def extract_data(data: list) -> (list,dict):
   """
   extract the seeds, and mappings from the input data.
