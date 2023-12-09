@@ -5,6 +5,8 @@ sys.dont_write_bytecode = True
 
 import os
 import argparse
+import logging
+
 from importlib import import_module
 from utils import read_input
 
@@ -35,7 +37,20 @@ if __name__ == "__main__":
     help="create a new directory for the day",
     required = False
   )
+  parser.add_argument(
+    "--debug",
+    action="store_true",
+    default=False,
+    help="show print statements",
+    required=False
+  )
   args = parser.parse_args()
+
+  # logging
+  if args.debug:
+    red_color_code = '\033[91m'
+    reset_color_code = '\033[0m'
+    logging.basicConfig(level=logging.DEBUG, format=f"{red_color_code}%(message)s{reset_color_code}")
 
   # new
   if args.new:
