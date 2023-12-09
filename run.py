@@ -6,6 +6,7 @@ sys.dont_write_bytecode = True
 import os
 import argparse
 import logging
+import textwrap
 
 from importlib import import_module
 from utils import read_input
@@ -59,15 +60,38 @@ if __name__ == "__main__":
     if not os.path.exists(day_dir_name):
       os.makedirs(day_dir_name)
 
+      # input files
       files = [
         "input.txt",
         "example_1.txt",
         "example_2.txt",
-        "main.py"
       ]
 
       for file in files:
         open(f"{day_dir_name}/{file}", "w")
+
+      # main.py file
+      starter_code = """\
+      import logging
+      logger = logging.getLogger()
+
+
+      def part_1(data: list) -> int:
+        \"\"\"
+        part 1
+        \"\"\"
+        return -1
+
+
+      def part_2(data: list) -> int:
+        \"\"\"
+        part 2
+        \"\"\"
+        return -1\
+      """
+
+      with open(f"{day_dir_name}/main.py", "w") as f:
+        f.write(textwrap.dedent(starter_code))
 
     exit(0)
 
