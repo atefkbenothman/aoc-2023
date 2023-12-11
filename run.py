@@ -7,6 +7,7 @@ import os
 import argparse
 import logging
 import textwrap
+import time
 
 from importlib import import_module
 from utils import read_input
@@ -124,11 +125,21 @@ if __name__ == "__main__":
   # import main module dynamically
   main_module = import_module(f"{day_dir}.main")
 
+  start = time.perf_counter()
+
   # call the part function from the module
   part_function = getattr(main_module, f"part_{part}")
   answer = part_function(data)
+
+  finish = time.perf_counter()
+
+  print("------------------------------------")
 
   if example:
     print(f"Day {day} Part {part} answer (example): {answer}")
   else:
     print(f"Day {day} Part {part} answer: {answer}")
+
+  print(f"Finished in {round(finish - start, 2)} seconds")
+
+  print("------------------------------------")
