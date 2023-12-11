@@ -34,8 +34,7 @@ def traverse(row, col) -> int:
       curr_row, curr_col = queue.pop(0)
       curr_tile = GRID[curr_row][curr_col]
       visited.add((curr_row, curr_col))
-      if GRID[curr_row][curr_col] not in ["|", "J", "L"]:
-        GRID[curr_row][curr_col] = "#"
+      GRID[curr_row][curr_col] = "#"
       if curr_tile == "S":
         d = [(0,-1), (-1,0), (0,1), (1,0)]
         dirs = []
@@ -117,6 +116,9 @@ def part_2(data: list) -> int:
   """
   part 2
   """
+  import sys
+  sys.setrecursionlimit(1000000)
+
   global ROWS
   global COLS
   global GRID
@@ -136,6 +138,11 @@ def part_2(data: list) -> int:
 
   for row in range(ROWS):
     for col in range(COLS):
+      if GRID[row][col] != "#":
+        GRID[row][col] = "."
+
+  for row in range(ROWS):
+    for col in range(COLS):
       if (
         ((
           row == 0 or
@@ -151,21 +158,31 @@ def part_2(data: list) -> int:
       ):
         fill(row, col)
 
-  dot_counts = 0
-  
-  inside = False
+  dot_count = 0
+
   for row in range(ROWS):
     for col in range(COLS):
-      if GRID[row][col] in ["-", "F", "7"] and inside:
-        GRID[row][col] = "I"
-        dot_counts += 1
-      if GRID[row][col] in ["|", "J", "L"]:
-        if inside:
-          inside = False
-        else:
-          inside = True
+      if GRID[row][col] == ".":
+        dot_count += 1
+  
+  # inside = False
+  # for row in range(ROWS):
+  #   for col in range(COLS):
+  #     if GRID[row][col] in ["-", "F", "7"] and inside:
+  #       GRID[row][col] = "I"
+  #       dot_counts += 1
+  #     if GRID[row][col] in ["|", "J", "L"]:
+  #       if inside:
+  #         inside = False
+  #       else:
+  #         inside = True
+          
+  # for row in range(ROWS):
+  #   for col in range(COLS):
+  #     if GRID[row][col] == "#":
+  #       GRID[row][col] = " "
 
   for i in GRID:
-    print(i)
+    print("".join(i))
 
-  return dot_counts
+  return dot_count
